@@ -544,17 +544,17 @@
             </div>
             <div class="form-group">
                 <label for="college">COLLEGE:</label>
-                <select id="college" name="college" required>
+                <div class="autocomplete" style="width:300px;">
+                    <input id="collegeInput" type="text" name="college" placeholder="Enter college name">
+                </div>
+                <!-- <select id="college" name="college" required>
                     <option value="" disabled selected>Select your College</option>
-                    <!-- <option value="SIT Pune">SIT Pune</option>
-                    <option value="KIIT">KIIT</option>
-                    <option value="IIT Kharagpur">IIT Kharagpur</option> -->
-
-                </select>
+                </select> -->
             </div>
             <div class="form-group">
                 <label for="instagram">INSTAGRAM USERNAME:</label>
-                <input placeholder='Enter your Instagram ID without "@"' type="text" id="instagram" name="instagram" required>
+                <input placeholder='Enter your Instagram ID without "@"' type="text" id="instagram" name="instagram"
+                    required>
             </div>
             <button class="button" type="submit">Find Your CoPals</button>
         </form>

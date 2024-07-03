@@ -2,13 +2,136 @@ let colleges = ["National Institute of Technology Rourkela" , "Visvesvaraya Nati
 
 colleges.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
-const selectElement = document.getElementById('college');
-colleges.forEach(college => {
-    const option = document.createElement('option');
-    option.value = college;
-    option.textContent = college;
-    selectElement.appendChild(option);
-});
+// const selectElement = document.getElementById('college');
+// colleges.forEach(college => {
+//     const option = document.createElement('option');
+//     option.value = college;
+//     option.textContent = college;
+//     selectElement.appendChild(option);
+// });
+
+class TrieNode {
+    constructor() {
+        this.children = {};
+        this.isEndOfWord = false;
+        this.word = '';
+    }
+}
+
+class Trie {
+    constructor() {
+        this.root = new TrieNode();
+    }
+
+    insert(word) {
+        let node = this.root;
+        for (let char of word.toLowerCase()) {
+            if (!node.children[char]) {
+                node.children[char] = new TrieNode();
+            }
+            node = node.children[char];
+        }
+        node.isEndOfWord = true;
+        node.word = word;
+    }
+
+    search(prefix, limit = 5) {
+        let node = this.root;
+        for (let char of prefix.toLowerCase()) {
+            if (!node.children[char]) {
+                return [];
+            }
+            node = node.children[char];
+        }
+        return this._collectWords(node, limit);
+    }
+
+    _collectWords(node, limit) {
+        let words = [];
+        if (node.isEndOfWord) {
+            words.push(node.word);
+        }
+        for (let child in node.children) {
+            if (words.length >= limit) break;
+            words = words.concat(this._collectWords(node.children[child], limit - words.length));
+        }
+        return words.slice(0, limit);
+    }
+}
+
+
+
+const trie = new Trie();
+colleges.forEach(college => trie.insert(college));
+
+function autocomplete(inp) {
+    let currentFocus;
+    inp.addEventListener("input", function(e) {
+        let a, b, i, val = this.value;
+        closeAllLists();
+        if (!val) { return false; }
+        currentFocus = -1;
+        a = document.createElement("DIV");
+        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("class", "autocomplete-items");
+        this.parentNode.appendChild(a);
+        
+        const matches = trie.search(val, 5);  // Limit to 5 results
+        for (i = 0; i < matches.length; i++) {
+            b = document.createElement("DIV");
+            b.innerHTML = "<strong>" + matches[i].substr(0, val.length) + "</strong>";
+            b.innerHTML += matches[i].substr(val.length);
+            b.innerHTML += "<input type='hidden' value='" + matches[i] + "'>";
+            b.addEventListener("click", function(e) {
+                inp.value = this.getElementsByTagName("input")[0].value;
+                closeAllLists();
+            });
+            a.appendChild(b);
+        }
+    });
+    inp.addEventListener("keydown", function(e) {
+        var x = document.getElementById(this.id + "autocomplete-list");
+        if (x) x = x.getElementsByTagName("div");
+        if (e.keyCode == 40) {
+            currentFocus++;
+            addActive(x);
+        } else if (e.keyCode == 38) {
+            currentFocus--;
+            addActive(x);
+        } else if (e.keyCode == 13) {
+            e.preventDefault();
+            if (currentFocus > -1) {
+                if (x) x[currentFocus].click();
+            }
+        }
+    });
+    function addActive(x) {
+        if (!x) return false;
+        removeActive(x);
+        if (currentFocus >= x.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = (x.length - 1);
+        x[currentFocus].classList.add("autocomplete-active");
+    }
+    function removeActive(x) {
+        for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("autocomplete-active");
+        }
+    }
+    function closeAllLists(elmnt) {
+        var x = document.getElementsByClassName("autocomplete-items");
+        for (var i = 0; i < x.length; i++) {
+            if (elmnt != x[i] && elmnt != inp) {
+                x[i].parentNode.removeChild(x[i]);
+            }
+        }
+    }
+    document.addEventListener("click", function (e) {
+        closeAllLists(e.target);
+    });
+}
+
+autocomplete(document.getElementById("collegeInput"));
+
 
 
 document.getElementById('studentForm').addEventListener('submit', async function(e) {
@@ -16,7 +139,7 @@ document.getElementById('studentForm').addEventListener('submit', async function
     
     const name = document.getElementById('name').value;
     const city = document.getElementById('city').value;
-    const college = document.getElementById('college').value;
+    const college = document.getElementById('collegeInput').value;
     const instagram = document.getElementById('instagram').value;
 
     await fetch('/addStudent', {
@@ -31,6 +154,7 @@ document.getElementById('studentForm').addEventListener('submit', async function
 
     document.getElementById('studentForm').reset();
 });
+
 
 async function fetchStudents(city, college, name, instagram) {
     const response = await fetch(`/students?city=${city}&college=${college}&name=${name}&instagram=${instagram}`);
