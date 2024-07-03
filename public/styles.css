@@ -5,16 +5,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .container {
-    background: white;
+    background: #7ED957;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     text-align: center;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 h1 {
@@ -37,34 +42,35 @@ label {
     text-align: left;
 }
 
-.body{
+.body {
     background-color: #FFDE59;
 }
 
-.container{
-    background-color: #7ED957;
-    color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-
-input[type="text"],
-select {
+input[type="text"], select, .autocomplete {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: calc(100% - 16px);
+    width: 100%;
+    box-sizing: border-box;
+    color: black;
 }
 
-input[type="text"]{
-    color: black;
+.autocomplete {
+    width: 100% !important;
+    padding: 0;
+}
+
+.autocomplete input {
+    width: 100%;
 }
 
 .logo {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    max-width: 100%;
+    height: auto;
 }
 
 button {
@@ -75,18 +81,19 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100%;
 }
 
-.stud{
+.stud {
     background-color: #218838;
     padding: 20px;
 }
 
-.palHeading, .hyperlink{
+.palHeading, .hyperlink {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.hyperlink{
+.hyperlink {
     color: #7ED957;
     font-weight: bold;
 }
@@ -105,4 +112,38 @@ button:hover {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    input[type="text"], select, .autocomplete input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .container {
+        padding: 10px;
+    }
+
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    input[type="text"], select, .autocomplete input {
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 14px;
+    }
 }
