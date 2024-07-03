@@ -301,8 +301,14 @@ async function fetchStudents(city, college, name, instagram) {
 
     studentsList.innerHTML = '<h3 class="palHeading">CoPals</h3>';
 
-    if (students.length === 0) {
-        studentsList.innerHTML += '<p class="palHeading" style="color:red;">No CoPals found</p>';
+    if (students.length === 0) { //class="palHeading" style="color:white;
+        studentsList.innerHTML += `
+        <p>Oops, no CoPals found right now 😔:(</p>
+        <p>But don't worry, they're on the way! 🚀</p>
+        <p>Shoot us an email: <a style="color:white;" href="mailto:connect.with.copal@gmail.com">connect.with.copal@gmail.com</a></p>
+        <p>Or slide into our DMs: <a style="color:white;" href="https://www.instagram.com/_co.pal_" target="_blank">@_co.pal_</a></p>
+        <p>We'll get back to you ASAP! ✨</p>
+        `;
     } else {
         students.forEach(student => {
             const studentItem = document.createElement('div');
