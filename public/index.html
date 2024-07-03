@@ -7,6 +7,7 @@
     <title>CoPal - Find your College Pal</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/833c393b25.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -15,27 +16,28 @@
         <header>
             <img src="logo.png" alt="CoPal Logo" class="logo">
         </header>
-        <p>FRIEND HUNTER : COLLEGE EDITION🔍🎓</p>
+        <h2>FRIEND HUNTER: COLLEGE EDITION🔍🎓</h2>
         <form id="studentForm">
             <div class="form-group">
                 <label for="name">NAME:</label>
-                <input placeholder="Enter your full name" type="text" id="name" name="name" required>
+                <input placeholder="Name" type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
                 <label for="city">CITY:</label>
                 <div class="autocomplete" style="width:300px;">
-                    <input id="cityInput" type="text" name="city" placeholder="Enter city name">
+                    <input id="cityInput" type="text" name="city" placeholder="City name">
                 </div>
             </div>
             <div class="form-group">
                 <label for="college">COLLEGE:</label>
                 <div class="autocomplete" style="width:300px;">
-                    <input id="collegeInput" type="text" name="college" placeholder="Enter college name">
+                    <input id="collegeInput" type="text" name="college" placeholder="College name">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="instagram">INSTAGRAM USERNAME:</label>
-                <input placeholder='Enter your Instagram ID without "@"' type="text" id="instagram" name="instagram"
+            <div class="form-group insta">
+                <!-- <label for="instagram">INSTAGRAM USERNAME:</label> -->
+                <i class="fa-brands fa-instagram fa-xl" style="color: #c70056; margin-top: 18px;"></i>
+                <input placeholder='Instagram handle without @' type="text" id="instagram" name="instagram"
                     required>
             </div>
             <button class="button" type="submit">Find Your CoPals</button>
