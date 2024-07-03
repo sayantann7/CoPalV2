@@ -296,7 +296,7 @@ async function fetchStudents(city, college, name, instagram) {
     studentsList.innerHTML = '<h3 class="palHeading">CoPals</h3>';
 
     if (students.length === 0) {
-        studentsList.innerHTML += '<p class="palHeading">No CoPals found</p>';
+        studentsList.innerHTML += '<p class="palHeading" style="color:red;">No CoPals found</p>';
     } else {
         students.forEach(student => {
             const studentItem = document.createElement('div');
@@ -306,7 +306,7 @@ async function fetchStudents(city, college, name, instagram) {
                 <p><strong>Name:</strong> ${student.name}</p>
                 <p><strong>City:</strong> ${student.city}</p>
                 <p><strong>College:</strong> ${student.college}</p>
-                <p><strong>Instagram:</strong> <a class="hyperlink" href="https://www.instagram.com/${student.instagram}" target="_blank">${student.instagram}</a></p>
+                <p><strong>Social:</strong> <a class="hyperlink" href="https://www.instagram.com/${student.instagram}" target="_blank">Instagram</a></p>
             `;
             studentsList.appendChild(studentItem);
         });
