@@ -266,8 +266,6 @@ function autocompleteCity(inp) {
 autocompleteCity(document.getElementById("cityInput"));
 
 
-const loadingDiv = document.getElementById('loading');
-
 
 
     
@@ -275,17 +273,6 @@ const loadingDiv = document.getElementById('loading');
 
 document.getElementById('studentForm').addEventListener('submit', async function (e) {
     e.preventDefault();
-
-    loadingDiv.style.display = 'block';
-    setTimeout(function() {
-        // Hide the loading screen after the async operation is complete
-        loadingDiv.style.display = 'none';
-  
-        // Proceed with other operations (e.g., displaying the data)
-        // You can replace this with your actual async operation
-        console.log("Async operation complete");
-      }, 10000); // Replace with actual async operation duration
-
     
 
     const name = document.getElementById('name').value;
