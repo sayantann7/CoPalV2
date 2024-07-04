@@ -275,10 +275,16 @@ document.getElementById('studentForm').addEventListener('submit', async function
     e.preventDefault();
     
 
-    const name = document.getElementById('name').value;
-    const city = document.getElementById('cityInput').value;
-    const college = document.getElementById('collegeInput').value;
-    const instagram = document.getElementById('instagram').value;
+    const name = (document.getElementById('name').value).trim();
+    const city = (document.getElementById('cityInput').value).trim();
+    const college = (document.getElementById('collegeInput').value).trim();
+    let ig = (document.getElementById('instagram').value).trim();
+
+    if(ig.charAt(0)=="@"){
+    	ig = ig.slice(1);
+    }
+
+    const instagram = ig;
 
     await fetch('/addStudent', {
         method: 'POST',
