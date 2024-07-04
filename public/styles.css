@@ -207,17 +207,7 @@ button:hover {
     }
 }
 
-#loading {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 100px;
-    color: black;
-    border-radius: 10px;
-    background-color: #333;
-  }
+
 
 
 
