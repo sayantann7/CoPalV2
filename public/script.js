@@ -284,6 +284,14 @@ document.getElementById('studentForm').addEventListener('submit', async function
     	ig = ig.slice(1);
     }
 
+    let firstLetterASCII = ig.charAt(0).charCodeAt();
+
+    if(firstLetterASCII>=65 && firstLetterASCII<=90){
+        firstLetterASCII += 32;
+        let firstLetter = String.fromCharCode(firstLetterASCII);
+        ig = firstLetter + ig.slice(1);
+    }
+
     const instagram = ig;
 
     await fetch('/addStudent', {
