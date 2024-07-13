@@ -45,6 +45,31 @@ label {
     text-align: left;
 }
 
+.contacts{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+    
+
+    .ico{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+    
+    }
+}
+
+
+.glow-icon{
+    text-shadow: 0 0 5px #00d2ff, 0 0 10px #9900ff, 0 0 15px #00d2ff, 0 0 20px #00d2ff, 0 0 25px #00d2ff, 0 0 30px #00d2ff, 0 0 35px #00d2ff;
+}
+.icon-glow2{
+    text-shadow: 0 0 5px #f266ff, 0 0 10px #f266ff, 0 0 15px #f266ff, 0 0 20px #f266ff, 0 0 25px #f266ff, 0 0 30px #f266ff, 0 0 35px #f266ff;
+}
 
 
 input[type="text"], select, .autocomplete {
