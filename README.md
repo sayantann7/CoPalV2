@@ -13,6 +13,3 @@ CoPal is a web application designed for 12th-grade students to connect with othe
 - HTML, CSS, and JavaScript for the frontend.
 - Node.js and Express for the backend.
 - MongoDB for the database.
-
-## Project Structure
-
